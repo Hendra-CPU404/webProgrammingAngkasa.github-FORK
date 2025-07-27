@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StyleHub - Fashion untuk Setiap Vibe</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #667eea;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 120px 0 80px;
+            text-align: center;
+            color: white;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 15px 30px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+
+        .cta-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        /* Style Categories */
+        .styles-section {
+            background: white;
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            margin-bottom: 3rem;
+            color: #333;
+        }
+
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.5rem 1.5rem;
+            background: transparent;
+            border: 2px solid #667eea;
+            color: #667eea;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .filter-btn.active,
+        .filter-btn:hover {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .styles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .style-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            opacity: 0;
+            animation: fadeInScale 0.6s ease-out forwards;
+        }
+
+        .style-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .style-image {
+            height: 250px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .style-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .style-card:hover .style-image::before {
+            left: 100%;
+        }
+
+        .style-content {
+            padding: 2rem;
+        }
+
+        .style-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .style-content p {
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+
+        .style-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tag {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        /* Trends Section */
+        .trends-section {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 80px 0;
+        }
+
+        .trends-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .trend-item {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .trend-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .trend-popularity {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .trend-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .trend-description {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Loading Animation */
+        .loading {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 3rem;
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Footer */
+        footer {
+            background: #222;
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: #667eea;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #667eea;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .styles-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .filter-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">StyleHub</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#styles">Styles</a></li>
+                <li><a href="#trends">Trends</a></li>
+                <li><a href="admin.html">Admin</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="container">
+                <h1>Express Your Vibe</h1>
+                <p>Discover fashion yang sesuai dengan kepribadian unik kamu - dari skena underground hingga streetwear premium</p>
+                <a href="#styles" class="cta-button">Explore Styles</a>
+            </div>
+        </section>
+
+        <!-- Style Categories -->
+        <section id="styles" class="styles-section">
+            <div class="container">
+                <h2 class="section-title">Fashion Categories</h2>
+                
+                <!-- Filter Buttons -->
+                <div class="filter-buttons" id="filterButtons">
+                    <button class="filter-btn active" onclick="filterStyles('all')">All Styles</button>
+                </div>
+                
+                <!-- Styles Grid -->
+                <div class="styles-grid" id="stylesGrid">
+                    <div class="loading">
+                        <div class="spinner"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Trends Section -->
+        <section id="trends" class="trends-section">
+            <div class="container">
+                <h2 class="section-title">Latest Fashion Trends</h2>
+                <div class="trends-grid" id="trendsGrid">
+                    <div class="loading">
+                        <div class="spinner"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>StyleHub</h3>
+                    <p>Platform fashion untuk mengekspresikan gaya unik kamu. Dari skena underground hingga streetwear premium.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <p><a href="#styles">Fashion Styles</a></p>
+                    <p><a href="#trends">Latest Trends</a></p>
+                    <p><a href="admin.html">Admin Panel</a></p>
+                </div>
+                <div class="footer-section">
+                    <h3>Categories</h3>
+                    <p><a href="#" onclick="filterStyles('skena')">Skena</a></p>
+                    <p><a href="#" onclick="filterStyles('casual')">Casual</a></p>
+                    <p><a href="#" onclick="filterStyles('streetwear')">Streetwear</a></p>
+                </div>
+            </div>
+            <hr style="border-color: #444; margin: 2rem 0;">
+            <p>&copy; 2024 StyleHub. Made with ❤️ for fashion enthusiasts</p>
+        </div>
+    </footer>
+
+    <script>
+        // Global variables
+        let allStyles = [];
+        let allTrends = [];
+        let currentFilter = 'all';
+
+        // API Configuration
+        const API_BASE = 'fashion_api.php';
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            loadAllData();
+            setupSmoothScrolling();
+        });
+
+        // Load all data from API
+        async function loadAllData() {
+            try {
+                const response = await fetch(API_BASE);
+                const data = await response.json();
+                
+                allStyles = data.styles || [];
+                allTrends = data.trends || [];
+                
+                renderFilterButtons();
+                renderStyles();
+                renderTrends();
+            } catch (error) {
+                console.error('Error loading data:', error);
+                showError('Gagal memuat data. Silakan refresh halaman.');
+            }
+        }
+
+        // Render filter buttons
+        function renderFilterButtons() {
+            const filterButtons = document.getElementById('filterButtons');
+            const categories = [...new Set(allStyles.map(style => style.category))];
+            
+            let buttonsHTML = '<button class="filter-btn active" onclick="filterStyles(\'all\')">All Styles</button>';
+            
+            categories.forEach(category => {
+                buttonsHTML += `<button class="filter-btn" onclick="filterStyles('${category}')">${category.charAt(0).toUpperCase() + category.slice(1)}</button>`;
+            });
+            
+            filterButtons.innerHTML = buttonsHTML;
+        }
+
+        // Filter styles
+        function filterStyles(category) {
+            currentFilter = category;
+            
+            // Update active button
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            renderStyles();
+        }
+
+        // Render styles
+        function renderStyles() {
+            const stylesGrid = document.getElementById('stylesGrid');
+            
+            let filteredStyles = currentFilter === 'all' 
+                ? allStyles 
+                : allStyles.filter(style => style.category === currentFilter);
+            
+            if (filteredStyles.length === 0) {
+                stylesGrid.innerHTML = '<div style="text-align: center; padding: 3rem; color: #666;">Tidak ada style ditemukan untuk kategori ini.</div>';
+                return;
+            }
+            
+            stylesGrid.innerHTML = '';
+            
+            filteredStyles.forEach((style, index) => {
+                const styleCard = document.createElement('div');
+                styleCard.className = 'style-card';
+                styleCard.style.animationDelay = `${index * 0.1}s`;
+                
+                styleCard.innerHTML = `
+                    <div class="style-image">
+                        ${style.icon}
+                    </div>
+                    <div class="style-content">
+                        <h3>${style.name}</h3>
+                        <p>${style.description}</p>
+                        <div class="style-tags">
+                            ${style.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                        </div>
+                    </div>
+                `;
+                
+                // Add click interaction
+                styleCard.addEventListener('click', function() {
+                    showStyleDetail(style);
+                });
+                
+                stylesGrid.appendChild(styleCard);
+            });
+        }
+
+        // Render trends
+        function renderTrends() {
+            const trendsGrid = document.getElementById('trendsGrid');
+            
+            if (allTrends.length === 0) {
+                trendsGrid.innerHTML = '<div style="text-align: center; padding: 3rem; color: #666;">Belum ada trend terbaru.</div>';
+                return;
+            }
+            
+            trendsGrid.innerHTML = '';
+            
+            // Sort trends by popularity
+            const sortedTrends = [...allTrends].sort((a, b) => b.popularity - a.popularity);
+            
+            sortedTrends.forEach((trend, index) => {
+                const trendItem = document.createElement('div');
+                trendItem.className = 'trend-item';
+                trendItem.style.animationDelay = `${index * 0.1}s`;
+                
+                trendItem.innerHTML = `
+                    <div class="trend-popularity">${trend.popularity}%</div>
+                    <h3 class="trend-title">${trend.title}</h3>
+                    <p class="trend-description">${trend.description}</p>
+                `;
+                
+                trendsGrid.appendChild(trendItem);
+            });
+        }
+
+        // Show style detail (could be expanded to modal)
+        function showStyleDetail(style) {
+            alert(`${style.name}\n\nCategory: ${style.category}\n\nDescription: ${style.description}\n\nTags: ${style.tags.join(', ')}`);
+        }
+
+        // Show error message
+        function showError(message) {
+            const errorDiv = document.createElement('div');
+            errorDiv.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: #ef4444;
+                color: white;
+                padding: 1rem 2rem;
+                border-radius: 8px;
+                z-index: 10000;
+                animation: slideInRight 0.3s ease-out;
+            `;
+            errorDiv.textContent = message;
+            
+            document.body.appendChild(errorDiv);
+            
+            setTimeout(() => {
+                errorDiv.remove();
+            }, 5000);
+        }
+
+        // Setup smooth scrolling
+        function setupSmoothScrolling() {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        }
+
+        // Add scroll animations
+        function addScrollAnimations() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            document.querySelectorAll('.style-card, .trend-item').forEach(el => {
+                observer.observe(el);
+            });
+        }
+
+        // Refresh data periodically (every 5 minutes)
+        setInterval(loadAllData, 300000);
+        
+        // Add keyboard shortcuts
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey && e.key === 'r') {
+                e.preventDefault();
+                loadAllData();
+            }
+        });
+        
+        // Add CSS animation for slide in
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideInRight {
+                from {
+                    transform: translateX(100%);
+                    opacity: 0;
+                }
+                to {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

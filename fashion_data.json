@@ -1,0 +1,88 @@
+{
+    "styles": [
+        {
+            "id": 1,
+            "name": "Dark Skena",
+            "category": "skena",
+            "description": "Style underground dengan nuansa dark dan mysterious. Perfect untuk yang suka tampil beda dan ekspresif.",
+            "tags": [
+                "dark",
+                "gothic",
+                "alternative",
+                "underground"
+            ],
+            "icon": "\ud83d\udda4",
+            "created_at": "2025-07-27 04:51:13"
+        },
+        {
+            "id": 2,
+            "name": "Urban Casual",
+            "category": "casual",
+            "description": "Kombinasi comfort dan style untuk daily wear. Cocok untuk hangout, kuliah, atau aktivitas santai.",
+            "tags": [
+                "comfortable",
+                "daily",
+                "versatile",
+                "trendy"
+            ],
+            "icon": "\ud83d\udc55",
+            "created_at": "2025-07-27 04:51:13"
+        },
+        {
+            "id": 3,
+            "name": "Premium Streetwear",
+            "category": "streetwear",
+            "description": "High-end streetwear dengan brand premium. Menggabungkan luxury dengan street culture.",
+            "tags": [
+                "premium",
+                "hypebeast",
+                "limited",
+                "exclusive"
+            ],
+            "icon": "\ud83d\udc5f",
+            "created_at": "2025-07-27 04:51:13"
+        }
+    ],
+    "lookbook": [
+        {
+            "id": 1,
+            "title": "Winter Skena Vibes",
+            "description": "Dark winter outfit dengan layer yang perfect",
+            "category": "skena",
+            "icon": "\u2744\ufe0f",
+            "created_at": "2025-07-27 04:51:13"
+        },
+        {
+            "id": 2,
+            "title": "Casual Friday Look",
+            "description": "Relaxed tapi tetap stylish untuk akhir pekan",
+            "category": "casual",
+            "icon": "\u2600\ufe0f",
+            "created_at": "2025-07-27 04:51:13"
+        },
+        {
+            "id": 3,
+            "title": "Hype Drop Collection",
+            "description": "Latest drops dari brand streetwear ternama",
+            "category": "streetwear",
+            "icon": "\ud83d\udd25",
+            "created_at": "2025-07-27 04:51:13"
+        }
+    ],
+    "trends": [
+        {
+            "id": 1,
+            "title": "Y2K Revival",
+            "description": "Trend fashion 2000an yang kembali populer",
+            "popularity": 95,
+            "created_at": "2025-07-27 04:51:13"
+        },
+        {
+            "id": 2,
+            "title": "Sustainable Fashion",
+            "description": "Fashion ramah lingkungan semakin diminati",
+            "popularity": 88,
+            "created_at": "2025-07-27 04:51:13"
+        }
+    ]
+}
