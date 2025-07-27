@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StyleHub - Fashion untuk Setiap Vibe</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #667eea;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 120px 0 80px;
+            text-align: center;
+            color: white;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 15px 30px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .cta-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        /* Style Categories */
+        .styles-section {
+            background: white;
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            margin-bottom: 3rem;
+            color: #333;
+        }
+
+        .styles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .style-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .style-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .style-image {
+            height: 250px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: white;
+        }
+
+        .style-content {
+            padding: 2rem;
+        }
+
+        .style-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .style-content p {
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+
+        .style-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tag {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        /* Lookbook Section */
+        .lookbook-section {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 80px 0;
+        }
+
+        .lookbook-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .lookbook-item {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .lookbook-item:hover {
+            transform: scale(1.05);
+        }
+
+        .lookbook-image {
+            height: 300px;
+            background: linear-gradient(45deg, #ff9a9e, #fecfef);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+        }
+
+        .lookbook-info {
+            padding: 1.5rem;
+        }
+
+        /* Admin Panel */
+        .admin-panel {
+            background: #333;
+            color: white;
+            padding: 60px 0;
+        }
+
+        .admin-form {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.8rem;
+            border: none;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+        }
+
+        .btn {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: transform 0.3s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            background: #222;
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .styles-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">StyleHub</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#styles">Styles</a></li>
+                <li><a href="#lookbook">Lookbook</a></li>
+                <li><a href="#trends">Trends</a></li>
+                <li><a href="#admin">Admin</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="container">
+                <h1>Express Your Vibe</h1>
+                <p>Discover fashion yang sesuai dengan kepribadian unik kamu - dari skena underground hingga streetwear premium</p>
+                <a href="#styles" class="cta-button">Explore Styles</a>
+            </div>
+        </section>
+
+        <!-- Style Categories -->
+        <section id="styles" class="styles-section">
+            <div class="container">
+                <h2 class="section-title">Fashion Categories</h2>
+                <div class="styles-grid" id="stylesGrid">
+                    <!-- Dynamic content will be loaded here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Lookbook -->
+        <section id="lookbook" class="lookbook-section">
+            <div class="container">
+                <h2 class="section-title">Latest Lookbook</h2>
+                <div class="lookbook-grid" id="lookbookGrid">
+                    <!-- Dynamic content will be loaded here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Admin Panel -->
+        <section id="admin" class="admin-panel">
+            <div class="container">
+                <h2 class="section-title">Content Management</h2>
+                <div class="admin-form">
+                    <h3>Add New Style</h3>
+                    <form id="addStyleForm">
+                        <div class="form-group">
+                            <label for="styleName">Style Name:</label>
+                            <input type="text" id="styleName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="styleCategory">Category:</label>
+                            <select id="styleCategory" required>
+                                <option value="">Pilih Kategori</option>
+                                <option value="skena">Skena</option>
+                                <option value="casual">Casual</option>
+                                <option value="streetwear">Streetwear</option>
+                                <option value="vintage">Vintage</option>
+                                <option value="minimalist">Minimalist</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="styleDescription">Description:</label>
+                            <textarea id="styleDescription" rows="4" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="styleTags">Tags (pisahkan dengan koma):</label>
+                            <input type="text" id="styleTags" placeholder="dark, gothic, alternative">
+                        </div>
+                        <button type="submit" class="btn">Add Style</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 StyleHub. Made with ❤️ for fashion enthusiasts</p>
+        </div>
+    </footer>
+
+    <script>
+        // Data storage (in production, this would be connected to a database)
+        let fashionData = {
+            styles: [
+                {
+                    id: 1,
+                    name: "Dark Skena",
+                    category: "skena",
+                    description: "Style underground dengan nuansa dark dan mysterious. Perfect untuk yang suka tampil beda dan ekspresif.",
+                    tags: ["dark", "gothic", "alternative", "underground"],
+                    icon: "🖤"
+                },
+                {
+                    id: 2,
+                    name: "Urban Casual",
+                    category: "casual",
+                    description: "Kombinasi comfort dan style untuk daily wear. Cocok untuk hangout, kuliah, atau aktivitas santai.",
+                    tags: ["comfortable", "daily", "versatile", "trendy"],
+                    icon: "👕"
+                },
+                {
+                    id: 3,
+                    name: "Premium Streetwear",
+                    category: "streetwear",
+                    description: "High-end streetwear dengan brand premium. Menggabungkan luxury dengan street culture.",
+                    tags: ["premium", "hypebeast", "limited", "exclusive"],
+                    icon: "👟"
+                }
+            ],
+            lookbook: [
+                {
+                    id: 1,
+                    title: "Winter Skena Vibes",
+                    description: "Dark winter outfit dengan layer yang perfect",
+                    category: "skena",
+                    icon: "❄️"
+                },
+                {
+                    id: 2,
+                    title: "Casual Friday Look",
+                    description: "Relaxed tapi tetap stylish untuk akhir pekan",
+                    category: "casual",
+                    icon: "☀️"
+                },
+                {
+                    id: 3,
+                    title: "Hype Drop Collection",
+                    description: "Latest drops dari brand streetwear ternama",
+                    category: "streetwear",
+                    icon: "🔥"
+                }
+            ]
+        };
+
+        // Render styles
+        function renderStyles() {
+            const stylesGrid = document.getElementById('stylesGrid');
+            stylesGrid.innerHTML = '';
+
+            fashionData.styles.forEach(style => {
+                const styleCard = document.createElement('div');
+                styleCard.className = 'style-card';
+                styleCard.innerHTML = `
+                    <div class="style-image">
+                        ${style.icon}
+                    </div>
+                    <div class="style-content">
+                        <h3>${style.name}</h3>
+                        <p>${style.description}</p>
+                        <div class="style-tags">
+                            ${style.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                        </div>
+                    </div>
+                `;
+                stylesGrid.appendChild(styleCard);
+            });
+        }
+
+        // Render lookbook
+        function renderLookbook() {
+            const lookbookGrid = document.getElementById('lookbookGrid');
+            lookbookGrid.innerHTML = '';
+
+            fashionData.lookbook.forEach(item => {
+                const lookbookItem = document.createElement('div');
+                lookbookItem.className = 'lookbook-item';
+                lookbookItem.innerHTML = `
+                    <div class="lookbook-image">
+                        ${item.icon}
+                    </div>
+                    <div class="lookbook-info">
+                        <h3>${item.title}</h3>
+                        <p>${item.description}</p>
+                        <span class="tag">${item.category}</span>
+                    </div>
+                `;
+                lookbookGrid.appendChild(lookbookItem);
+            });
+        }
+
+        // Add new style
+        document.getElementById('addStyleForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const newStyle = {
+                id: fashionData.styles.length + 1,
+                name: document.getElementById('styleName').value,
+                category: document.getElementById('styleCategory').value,
+                description: document.getElementById('styleDescription').value,
+                tags: document.getElementById('styleTags').value.split(',').map(tag => tag.trim()),
+                icon: getCategoryIcon(document.getElementById('styleCategory').value)
+            };
+
+            fashionData.styles.push(newStyle);
+            renderStyles();
+            
+            // Reset form
+            this.reset();
+            alert('Style baru berhasil ditambahkan!');
+        });
+
+        // Get category icon
+        function getCategoryIcon(category) {
+            const icons = {
+                'skena': '🖤',
+                'casual': '👕',
+                'streetwear': '👟',
+                'vintage': '🕰️',
+                'minimalist': '⚪'
+            };
+            return icons[category] || '✨';
+        }
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            renderStyles();
+            renderLookbook();
+        });
+
+        // Add some interactive features
+        document.addEventListener('click', function(e) {
+            if (e.target.closest('.style-card')) {
+                const card = e.target.closest('.style-card');
+                card.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    card.style.transform = '';
+                }, 150);
+            }
+        });
+    </script>
+</body>
+</html>
